@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='../css/style.css')}}">
 
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-        <a href="/" class="d-flex align-nombres-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
           <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-atom" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -24,107 +24,34 @@
           
         </a>
   
-        
         <ul class="nav nav-pills">
-            <li class="nav-item"><a href="../" class="nav-link " aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="../admin" class="nav-link active">Admin</a></li>
-          </ul>
+          <li class="nav-item"><a href="../" class="nav-link " aria-current="page">Home</a></li>
+          <li class="nav-item"><a href="../admin" class="nav-link active">Admin</a></li>
+        </ul>
       </header>
 
   <body>
-    <p class="h3" style="text-align:center">Tabla de cálculo del Impuesto Global Complementario 2022</p>
-
-
-    <div class="container px-4 py-5" id="custom-cards">
-        
-        <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr >
-            
-                  <th scope="col">Desde</th>
-                  <th scope="col">Hasta</th>
-                  <th scope="col">Factor</th>
-                  <th scope="col">Cantidad a reducir</th> 
-                  <th scope="col">Año</th> 
-
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="table-primary">
-                    {% block conect %}
-
-                    {% for item in contexto.datos %}
-
-                    <td>{{item.0}}</td>
-                    <td>{{item.1}}</td>
-                    <td>{{item.2}}</td>
-                    <td>{{item.3}}</td>
-                    <td>{{item.4}}</td>
-                    
-                    
-                  </tr>
-
-                  {% endfor %}
-                </tbody>
-
-                
-            </table>
-          </div>
+    {% block conect %}
+    <div class="container">
+    <form action="" method="POST">
+        <div class="row g-3">
+			<div class="col-sm-12">
+              <label for="password" class="form-label">Contraseña Admin</label>
+              <input name="password" type="password" class="form-control" id="password" value="" required>
+      </div>
+      <button type="submit" class="w-100 btn btn-lg btn-primary">Ingresar</button>
+     </form>
     </div>
-
-    <p class="h3" style="text-align:center">Tabla Correción Monetaria 2021</p>
-
-
-    <div class="container px-4 py-5" id="custom-cards">
-        
-        <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr >  
-                    <th scope="col">Desde</th>
-                    <th scope="col">Hasta</th>
-                    <th scope="col">Porcentaje</th>   
-                    <th scope="col">Año</th> 
-                </tr>
-                 
-              </thead>
-              <tbody>
-                <tr class="table-primary">
-        
-                    {% for item in contexto.cm %}
-
-                    <td>{{item.0}}</td>
-                    <td>Diciembre</td>
-                    <td>{{item.1}}</td>
-                    <td>{{item.2}}</td>
-                    
-                    
-                  </tr>
-
-                  {% endfor %}
-                </tbody>
-
-                  {% endblock conect %}
-            </table>
-          </div>
-          <ul class="nav nav-pills"></ul>
-          <li class="nav-item"><a href="../" class="nav-link active" aria-current="page">Añadir Tabla</a></li>
-         </ul>
-
-    </div>
-    
-
+    {% endblock conect %}
 </body>
 
-   
 <div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-nombres-center py-3 my-4 border-top">
-    <div class="col-md-4 d-flex align-nombres-center">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
       <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
         <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
       </a>
-      <span class="text-muted">© 2021 Clarum</span>
+      <span class="text-muted">© TAX HELP</span>
     </div>
 
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">

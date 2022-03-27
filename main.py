@@ -7,7 +7,7 @@ import os
 app=Flask(__name__)
 
 def connectDB():
-    connectionString='dbname=proyectosii user=fer password=ferfer host=localhost'
+    connectionString='dbname=taxhelp user=fer password=ferfer host=localhost'
     print(connectionString)
     try:
         return psycopg2.connect(connectionString)
@@ -18,7 +18,7 @@ def connectDB():
 def index():
     conectar = connectDB()
     cursor = conectar.cursor()
-    cursor.execute("""SELECT factor FROM IA_2022;""")
+    cursor.execute("""SELECT factor FROM IA;""")
     
     ans=cursor.fetchall()
 
@@ -28,7 +28,7 @@ def index():
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     if request.method=='GET':
-        return render_template('admin_login.html')
+        return render_template('adminLog.html')
     else:
 
         user = request.form.get("password")
@@ -37,16 +37,15 @@ def admin():
 
             conectar = connectDB()
             cursor=conectar.cursor()
-            cursor.execute("""SELECT desde, hasta, factor, CR
-                            FROM IA_2022; """)
+            cursor.execute("""SELECT desde, hasta, factor, CR, anio
+                            FROM IA; """)
         
             datos=cursor.fetchall()
 
             conectar = connectDB()
             cursor=conectar.cursor()
-            cursor.execute("""SELECT mes_v, porcentaje
-                            FROM CM_2021
-                            WHERE mes_h='Diciembre'; """)
+            cursor.execute("""SELECT mes, porcentaje, anio
+                            FROM CM; """)
 
             cm=cursor.fetchall()
 
