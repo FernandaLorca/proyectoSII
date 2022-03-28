@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main>
+    {% block conect %}
+    <div class="container col-xxl-8 px-4 py-5">
+        <form action="" method="POST">
+            <div class="col-sm-12">
+                <h4 class="pb-2">Ingrese contraseña admin</h4>
+                <input name="password" type="password" class="form-control text-muted" placeholder="Contraseña" id="password" value="" required>
+            </div>
+            <div class="d-grid py-2 gap-2">
+                <button type="button submit" class="btn btn-outline-info">Ingresar</button>
+            </div>
+        </form>
+    </div>
+    {% endblock conect %}
+</main>
+
+{% endblock %}

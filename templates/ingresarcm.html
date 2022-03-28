@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main>
+
+    <div class="container col-xxl-10 px-6 py-5">
+        <h2 class="pb-2">Ingresar datos en Tabla de Conversión Monetaria Mensual</h2>
+        <p class="fs-5 text-dark mb-4">Rellene los recuadros de texto con la información correspondiente</p>
+
+        <form method="post" action="/ingresarcm">
+
+            <div class="input-group mb-3">
+                <select name=mes class="form-select" aria-label="Default select example">
+                    <!-- agregar for con los años-->
+                    <option selected>Desde</option>
+                    <option name=mes value="Enero">Enero</option>
+                    <option name=mes value="Febrero">Febrero</option>
+                    <option name=mes value="Marzo">Marzo</option>
+                    <option name=mes value="Abril">Abril</option>
+                    <option name=mes value="Mayo">Mayo</option>
+                    <option name=mes value="Junio">Junio</option>
+                    <option name=mes value="Julio">Julio</option>
+                    <option name=mes value="Agosto">Agosto</option>
+                    <option name=mes value="Septiembre">Septiembre</option>
+                    <option name=mes value="Octubre">Octubre</option>
+                    <option name=mes value="Noviembre">Noviembre</option>
+                </select>
+
+                <input type="text" class="form-control" readonly="readonly" placeholder="Diciembre">
+                <input type="number" step=".01" class="form-control" name="porcentaje" id="porcentaje" placeholder="Porcentaje">
+                <input type="number" class="form-control" name="anio" id="anio" placeholder="Año">
+            </div>
+
+            <div class="d-grid py-2 gap-2">
+                <button type="button submit" class="btn btn-outline-info">Agregar</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+{% endblock %}
+
+<form method="post" action="/calculo">
+    <select name=year class="form-select" aria-label="Default select example">
+        <!-- agregar for con los años-->
+        <option selected>Año</option>
+        <option name=year value="2021">2021</option>
+        <option name=year value="2022">2022</option>
+    </select>
+    <div class="d-grid py-2 gap-2">
+        <button type="button submit" class="btn btn-outline-info">Ir a calcular</button>
+    </div>
+</form>
