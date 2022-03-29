@@ -6,20 +6,25 @@
 
 
     <div class="container col-xxl-10 px-6 py-5">
-        <h2 class="pb-2">Ingresar datos en Tabla de cálculo del Impuesto Global Complementario </h2>
+        <h2 class="pb-2">Ingresar Datos en Tabla de Cálculo del Impuesto Global Complementario </h2>
         <p class="fs-5 text-dark mb-4">Rellene los recuadros de texto con la información correspondiente</p>
 
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" id="desdeIA" placeholder="Desde">
-            <input type="text" class="form-control" id="hastaIA" placeholder="Hasta">
-            <input type="number" class="form-control" id="factorIA" placeholder="Factor">
-            <input type="number" class="form-control" id="CR" placeholder="Cantidad a rebajar">
-            <input type="number" class="form-control" id="anio" placeholder="Año">
-        </div>
 
-        <div class="d-grid py-2 gap-2">
-            <button type="button submit" class="btn btn-outline-info">Agregar</button>
-        </div>
+        <form method="post" action="/ingresaria">
+
+            <div class="input-group mb-3">
+                <input type="number" class="form-control" name="desdeIA" id="desdeIA" placeholder="Desde">
+                <input type="number" class="form-control" name="hastaIA" id="hastaIA" placeholder="Hasta">
+                <input type="number" step=".01" class="form-control" name="factorIA" id="factorIA" placeholder="Factor">
+                <input type="number" class="form-control" name="CR" id="CR" placeholder="Cantidad a rebajar">
+                <input type="number" class="form-control" name="anio" placeholder="Año">
+            </div>
+
+            <div class="d-grid py-2 gap-2">
+                <button type="button submit" class="btn btn-outline-info">Agregar</button>
+            </div>
+
+        </form>
 
     </div>
 

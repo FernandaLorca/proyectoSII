@@ -5,7 +5,7 @@
 <main>
 
     <div class="container col-xxl-10 px-6 py-5">
-        <h2 class="pb-2">Ingresar datos en Tabla de Conversión Monetaria Mensual</h2>
+        <h2 class="pb-2">Ingresar Datos en Tabla de Conversión Monetaria Mensual</h2>
         <p class="fs-5 text-dark mb-4">Rellene los recuadros de texto con la información correspondiente</p>
 
         <form method="post" action="/ingresarcm">
@@ -43,15 +43,3 @@
 </main>
 
 {% endblock %}
-
-<form method="post" action="/calculo">
-    <select name=year class="form-select" aria-label="Default select example">
-        <!-- agregar for con los años-->
-        <option selected>Año</option>
-        <option name=year value="2021">2021</option>
-        <option name=year value="2022">2022</option>
-    </select>
-    <div class="d-grid py-2 gap-2">
-        <button type="button submit" class="btn btn-outline-info">Ir a calcular</button>
-    </div>
-</form>

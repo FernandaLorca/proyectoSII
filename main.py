@@ -14,6 +14,8 @@ def connectDB():
     except:
         print("No se pudo conectar.")
 
+
+
 @app.route('/')
 def index():
 
@@ -89,16 +91,44 @@ def ingresarcm():
         conectar = connectDB()
         cursor=conectar.cursor()
 
+        print(sql)
+
+        try:
+            cursor.execute(sql,datos)
+            conectar.commit()
+            return render_template('/ingresarcm.html')
+        except:
+            return render_template('/ingresarcm.html')
+    
+
+@app.route('/ingresaria', methods=['GET', 'POST'])
+def ingresaria():
+
+    if request.method=='GET':
+        return render_template('ingresaria.html')
+
+    else:
+
+        desdeIA = request.form.get("desdeIA")
+        hastaIA = request.form.get("hastaIA")
+        factorIA = request.form.get("factorIA")
+        cr = request.form.get("CR")
+        anio = request.form.get("anio")
+
+        sql = 'INSERT INTO IA (desde, hasta, factor, CR, anio) VALUES(%s,%s,%s,%s,%s)'
+
+        datos = (desdeIA, hastaIA, factorIA, cr, anio)
+
+        conectar = connectDB()
+        cursor=conectar.cursor()
+
         cursor.execute(sql, datos)
 
         conectar.commit()
+    
+    return render_template('/ingresaria.html')
 
-    return render_template('admin.html')
 
-@app.route('/ingresaria')
-def ingresaria():
-
-    return render_template('ingresaria.html')
 
 
 if __name__ == '__main__':
