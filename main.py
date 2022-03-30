@@ -14,8 +14,6 @@ def connectDB():
     except:
         print("No se pudo conectar.")
 
-
-
 @app.route('/')
 def index():
 
@@ -96,9 +94,9 @@ def ingresarcm():
         try:
             cursor.execute(sql,datos)
             conectar.commit()
-            return render_template('/ingresarcm.html')
+            return render_template('ingresarcm.html')
         except:
-            return render_template('/ingresarcm.html')
+            return render_template('ingresarcm.html')
     
 
 @app.route('/ingresaria', methods=['GET', 'POST'])
@@ -126,10 +124,104 @@ def ingresaria():
 
         conectar.commit()
     
-    return render_template('/ingresaria.html')
+    return render_template('ingresaria.html')
+
+@app.route('/eliminaria', methods=['GET', 'POST'])
+def eliminaria():
+
+    conectar = connectDB()
+    cursor=conectar.cursor()
+    cursor.execute("""SELECT desde, hasta, factor, CR, anio
+                            FROM IA order by anio, factor; """)
+        
+    datos=cursor.fetchall()
+
+    conectar = connectDB()
+    cursor=conectar.cursor()
+    cursor.execute("""SELECT mes, porcentaje, anio
+                       FROM CM order by anio; """)
+
+    cm=cursor.fetchall()
+
+    ctx = {
+        "datos" : datos,
+        "cm" : cm
+            }
+
+    if request.method=='GET':
+        return render_template('eliminaria.html', contexto=ctx)
+
+    else:
+
+        desdeIA = request.form.get("desdeIA")
+        hastaIA = request.form.get("hastaIA")
+        factorIA = request.form.get("factorIA")
+        cr = request.form.get("CR")
+        anio = request.form.get("anio")
+
+        sql = 'DELETE FROM IA WHERE desde=%s AND hasta=%s AND factor=%s AND CR=%s AND anio=%s'
+
+        datos = (desdeIA, hastaIA, factorIA, cr, anio)
+
+        conectar = connectDB()
+        cursor=conectar.cursor()
+
+        print(sql)
+
+        cursor.execute(sql,datos)
+        conectar.commit()
+        return render_template('admin.html', contexto=ctx)
+        
 
 
+@app.route('/eliminarcm', methods=['GET', 'POST'])
+def eliminarcm():
 
+    conectar = connectDB()
+    cursor=conectar.cursor()
+    cursor.execute("""SELECT desde, hasta, factor, CR, anio
+                            FROM IA order by anio, factor; """)
+        
+    datos=cursor.fetchall()
+
+    conectar = connectDB()
+    cursor=conectar.cursor()
+    cursor.execute("""SELECT mes, porcentaje, anio
+                       FROM CM order by anio; """)
+
+    cm=cursor.fetchall()
+
+    ctx = {
+        "datos" : datos,
+        "cm" : cm
+            }
+
+    if request.method=='GET':
+        return render_template('eliminarcm.html', contexto=ctx)
+
+    else:
+
+        mes = request.form.get("mes")
+        porcentaje = request.form.get("porcentaje")
+        anio = request.form.get("anio")
+
+        sql = 'DELETE FROM CM WHERE mes=%s AND porcentaje=%s AND anio=%s'
+
+        datos = (mes, porcentaje, anio)
+
+        conectar = connectDB()
+        cursor=conectar.cursor()
+
+        print(sql)
+
+        try:
+            cursor.execute(sql,datos)
+            conectar.commit()
+            return render_template('admin.html', contexto=ctx)
+        except:
+            return render_template('admin.html', contexto=ctx)
+
+  
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -6,7 +6,7 @@
 
     <div class="container col-xxl-10 px-6 py-5">
 
-        <h2 class="pb-2 text-center">Tabla de cálculo del Impuesto Global Complementario</h2>
+        <h2 class="pb-2 text-center">Tabla de Cálculo del Impuesto Global Complementario</h2>
 
 
         <div class="container col-xxl-9 px-4 py-5" id="custom-cards">
@@ -20,7 +20,7 @@
                             <th scope="col">Desde</th>
                             <th scope="col">Hasta</th>
                             <th scope="col">Factor</th>
-                            <th scope="col">Cantidad a reducir</th>
+                            <th scope="col">Cantidad a rebajar</th>
                             
 
                         </tr>
@@ -50,6 +50,11 @@
             <div class="d-grid py-2 gap-2">
                 <a href="{{  url_for('ingresaria') }}" class="btn btn-outline-info">Añadir datos</a>
             </div>
+
+            <div class="d-grid py-2 gap-2">
+                <a href="{{  url_for('eliminaria') }}" class="btn btn-outline-info">Eliminar datos</a>
+            </div>
+
         </div>
 
         <h2 class="pb-2 text-center">Tabla Correción Monetaria Mensual a Diciembre</h2>
@@ -91,6 +96,10 @@
     
             <div class="d-grid py-2 gap-2">
                 <a href="{{  url_for('ingresarcm') }}" class="btn btn-outline-info">Añadir datos</a>
+            </div>
+
+            <div class="d-grid py-2 gap-2">
+                <a href="{{  url_for('eliminarcm') }}" class="btn btn-outline-info">Eliminar datos</a>
             </div>
         
 
