@@ -1,151 +1,114 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "layout.html" %}
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+{% block content %}
 
-	<!-- CSS Personalizado -->
-    <link rel="stylesheet" href="{{url_for('static', filename='../css/style.css')}}">
+<main>
 
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-        <a href="/" class="d-flex align-nombres-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-atom" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <line x1="12" y1="12" x2="12" y2="12.01" />
-            <path d="M12 2a4 10 0 0 0 -4 10a4 10 0 0 0 4 10a4 10 0 0 0 4 -10a4 10 0 0 0 -4 -10" transform="rotate(45 12 12)" />
-            <path d="M12 2a4 10 0 0 0 -4 10a4 10 0 0 0 4 10a4 10 0 0 0 4 -10a4 10 0 0 0 -4 -10" transform="rotate(-45 12 12)" />
-          </svg>
-          <span class="fs-4">TAX HELP</span>
-          
-        </a>
-  
-        
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="../" class="nav-link " aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="../admin" class="nav-link active">Admin</a></li>
-          </ul>
-      </header>
+    <div class="container col-xxl-10 px-6 py-5">
 
-  <body>
-    <p class="h3" style="text-align:center">Tabla de cálculo del Impuesto Global Complementario 2022</p>
+        <h2 class="pb-2 text-center">Tabla de Cálculo del Impuesto Global Complementario</h2>
 
 
-    <div class="container px-4 py-5" id="custom-cards">
-        
-        <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr >
-            
-                  <th scope="col">Desde</th>
-                  <th scope="col">Hasta</th>
-                  <th scope="col">Factor</th>
-                  <th scope="col">Cantidad a reducir</th> 
-                  <th scope="col">Año</th> 
+        <div class="container col-xxl-9 px-4 py-5" id="custom-cards">
 
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="table-primary">
-                    {% block conect %}
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="table-info">
 
-                    {% for item in contexto.datos %}
+                            <th scope="col">Año</th>
+                            <th scope="col">Desde</th>
+                            <th scope="col">Hasta</th>
+                            <th scope="col">Factor</th>
+                            <th scope="col">Cantidad a rebajar</th>
+                            
 
-                    <td>{{item.0}}</td>
-                    <td>{{item.1}}</td>
-                    <td>{{item.2}}</td>
-                    <td>{{item.3}}</td>
-                    <td>{{item.4}}</td>
-                    
-                    
-                  </tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {% block conect %}
 
-                  {% endfor %}
-                </tbody>
+                            {% for item in contexto.datos %}
 
-                
-            </table>
-          </div>
-    </div>
+                            <td>{{item.4}}</td> 
+                            <td>{{item.0}}</td>
+                            <td>{{item.1}}</td>
+                            <td>{{item.2}}</td>
+                            <td>{{item.3}}</td>
+                            
 
-    <p class="h3" style="text-align:center">Tabla Correción Monetaria 2021</p>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
 
 
-    <div class="container px-4 py-5" id="custom-cards">
-        
-        <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr >  
-                    <th scope="col">Desde</th>
-                    <th scope="col">Hasta</th>
-                    <th scope="col">Porcentaje</th>   
-                    <th scope="col">Año</th> 
-                </tr>
-                 
-              </thead>
-              <tbody>
-                <tr class="table-primary">
-        
-                    {% for item in contexto.cm %}
+                </table>
+            </div>
 
-                    <td>{{item.0}}</td>
-                    <td>Diciembre</td>
-                    <td>{{item.1}}</td>
-                    <td>{{item.2}}</td>
-                    
-                    
-                  </tr>
+            <div class="d-grid py-2 gap-2">
+                <a href="{{  url_for('ingresaria') }}" class="btn btn-outline-info">Añadir datos</a>
+            </div>
 
-                  {% endfor %}
-                </tbody>
+            <div class="d-grid py-2 gap-2">
+                <a href="{{  url_for('eliminaria') }}" class="btn btn-outline-info">Eliminar datos</a>
+            </div>
 
-                  {% endblock conect %}
-            </table>
-          </div>
-          <ul class="nav nav-pills"></ul>
-          <li class="nav-item"><a href="../" class="nav-link active" aria-current="page">Añadir Tabla</a></li>
-         </ul>
+        </div>
 
-    </div>
+        <h2 class="pb-2 text-center">Tabla Correción Monetaria Mensual a Diciembre</h2>
+
+        <div class="container col-xxl-9 px-4 py-5" id="custom-cards">
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="table-info">
+
+                            <th scope="col">Año</th>
+                            <th scope="col">Desde</th>
+                            <th scope="col">Hasta</th>
+                            <th scope="col">Porcentaje</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                            {% for item in contexto.cm %}
+
+                            <td>{{item.2}}</td>
+                            <td>{{item.0}}</td>
+                            <td>Diciembre</td>
+                            <td>{{item.1}}</td>
+                            
+
+
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+
+                    {% endblock conect %}
+                </table>
+            </div>
     
+            <div class="d-grid py-2 gap-2">
+                <a href="{{  url_for('ingresarcm') }}" class="btn btn-outline-info">Añadir datos</a>
+            </div>
 
-</body>
+            <div class="d-grid py-2 gap-2">
+                <a href="{{  url_for('eliminarcm') }}" class="btn btn-outline-info">Eliminar datos</a>
+            </div>
+        
 
-   
-<div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-nombres-center py-3 my-4 border-top">
-    <div class="col-md-4 d-flex align-nombres-center">
-      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-      </a>
-      <span class="text-muted">© 2021 Clarum</span>
+        </div>
+
     </div>
 
-    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-whatsapp" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-          <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
-          <path d="M9 10a0.5 .5 0 0 0 1 0v-1a0.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a0.5 .5 0 0 0 0 -1h-1a0.5 .5 0 0 0 0 1" />
-        </svg>
-      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fd0061" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-          <rect x="4" y="4" width="16" height="16" rx="4" />
-          <circle cx="12" cy="12" r="3" />
-          <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
-        </svg>
-      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-          <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
-        </svg>
-  </ul>
-  </footer>
-</div>
+
+
+</main>
+
+{% endblock %}
