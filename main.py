@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 
 def connectDB():
-    connectionString='dbname=taxhelp user=cata password=catacata host=localhost'
+    connectionString='dbname=taxhelp user=fer password=ferfer host=localhost'
     print(connectionString)
     try:
         return psycopg2.connect(connectionString)
@@ -220,6 +220,13 @@ def eliminarcm():
             return render_template('admin.html', contexto=ctx)
         except:
             return render_template('admin.html', contexto=ctx)
+
+@app.route('/calcular',  methods=['POST'])
+def calcular():
+
+    
+   
+    return render_template('calcular.html')
 
   
 

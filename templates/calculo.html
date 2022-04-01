@@ -9,106 +9,111 @@
         <p class="fs-5 text-dark mb-4">Rellene los recuadros de texto con la información correspondiente</p>
 
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Enero</span>
-            <input type="number" min="0" class="form-control" id="SIEnero" placeholder="Sueldo Imponible">
-            <input type="number" min="0" class="form-control" id="IREnero" placeholder="Impuestos Retenidos">
-            <input type="number" min="0" class="form-control" id="HBEnero" placeholder="Honorarios Brutos">
-            <input type="number" min="0" class="form-control" id="HREnero" placeholder="Impuestos Retenidos">
-        </div>
+        <form method="post" action="/calcular">
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Febrero</span>
-            <input type="number" min="0" class="form-control" id="SIFebrero" placeholder="Sueldo Imponible">
-            <input type="number" min="0" class="form-control" id="IRFebrero" placeholder="Impuestos Retenidos">
-            <input type="number" min="0" class="form-control" id="HBFebrero" placeholder="Honorarios Brutos">
-            <input type="number" min="0" class="form-control" id="HRFebrero" placeholder="Impuestos Retenidos">
-        </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Marzo</span>
-            <input type="number" min="0" class="form-control" id="SIMarzo" placeholder="Sueldo Imponible">
-            <input type="number" min="0" class="form-control" id="IRMarzo" placeholder="Impuestos Retenidos">
-            <input type="number" min="0" class="form-control" id="HBMarzo" placeholder="Honorarios Brutos">
-            <input type="number" min="0" class="form-control" id="HRMarzo" placeholder="Impuestos Retenidos">
-        </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Enero</span>
+                <input type="number" min="0" class="form-control" id="SIEnero" placeholder="Sueldo Imponible">
+                <input type="number" min="0" class="form-control" id="IREnero" placeholder="Impuestos Retenidos">
+                <input type="number" min="0" class="form-control" id="HBEnero" placeholder="Honorarios Brutos">
+                <input type="number" min="0" class="form-control" id="HREnero" placeholder="Impuestos Retenidos">
+            </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Abril</span>
-            <input type="number" min="0" class="form-control" id="SIAbril" placeholder="Sueldo Imponible">
-            <input type="number" min="0" class="form-control" id="IRAbril" placeholder="Impuestos Retenidos">
-            <input type="number" min="0" class="form-control" id="HBAbril" placeholder="Honorarios Brutos">
-            <input type="number" min="0" class="form-control" id="HRAbril" placeholder="Impuestos Retenidos">
-        </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Febrero</span>
+                <input type="number" min="0" class="form-control" id="SIFebrero" placeholder="Sueldo Imponible">
+                <input type="number" min="0" class="form-control" id="IRFebrero" placeholder="Impuestos Retenidos">
+                <input type="number" min="0" class="form-control" id="HBFebrero" placeholder="Honorarios Brutos">
+                <input type="number" min="0" class="form-control" id="HRFebrero" placeholder="Impuestos Retenidos">
+            </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Mayo</span>
-            <input type="number" min="0" class="form-control" id="SIMayo" placeholder="Sueldo Imponible">
-            <input type="number" min="0" class="form-control" id="IRMayo" placeholder="Impuestos Retenidos">
-            <input type="number" min="0" class="form-control" id="HBMayo" placeholder="Honorarios Brutos">
-            <input type="number" min="0" class="form-control" id="HRMayo" placeholder="Impuestos Retenidos">
-        </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Marzo</span>
+                <input type="number" min="0" class="form-control" id="SIMarzo" placeholder="Sueldo Imponible">
+                <input type="number" min="0" class="form-control" id="IRMarzo" placeholder="Impuestos Retenidos">
+                <input type="number" min="0" class="form-control" id="HBMarzo" placeholder="Honorarios Brutos">
+                <input type="number" min="0" class="form-control" id="HRMarzo" placeholder="Impuestos Retenidos">
+            </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Junio</span>
-            <input type="number" min="0" class="form-control" id="SIJunio" placeholder="Sueldo Imponible">
-            <input type="number" min="0" class="form-control" id="IRJunio" placeholder="Impuestos Retenidos">
-            <input type="number" min="0" class="form-control" id="HBJunio" placeholder="Honorarios Brutos">
-            <input type="number" min="0" class="form-control" id="HRJunio" placeholder="Impuestos Retenidos">
-        </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Abril</span>
+                <input type="number" min="0" class="form-control" id="SIAbril" placeholder="Sueldo Imponible">
+                <input type="number" min="0" class="form-control" id="IRAbril" placeholder="Impuestos Retenidos">
+                <input type="number" min="0" class="form-control" id="HBAbril" placeholder="Honorarios Brutos">
+                <input type="number" min="0" class="form-control" id="HRAbril" placeholder="Impuestos Retenidos">
+            </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Julio</span>
-            <input type="number" min="0" class="form-control" id="SIJulio" placeholder="Sueldo Imponible">
-            <input type="number" min="0" class="form-control" id="IRJulio" placeholder="Impuestos Retenidos">
-            <input type="number" min="0" class="form-control" id="HBJulio" placeholder="Honorarios Brutos">
-            <input type="number" min="0" class="form-control" id="HRJulio" placeholder="Impuestos Retenidos">
-        </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Mayo</span>
+                <input type="number" min="0" class="form-control" id="SIMayo" placeholder="Sueldo Imponible">
+                <input type="number" min="0" class="form-control" id="IRMayo" placeholder="Impuestos Retenidos">
+                <input type="number" min="0" class="form-control" id="HBMayo" placeholder="Honorarios Brutos">
+                <input type="number" min="0" class="form-control" id="HRMayo" placeholder="Impuestos Retenidos">
+            </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Agosto</span>
-            <input type="number" min="0" class="form-control" id="SIAgosto" placeholder="Sueldo Imponible">
-            <input type="number" min="0" class="form-control" id="IRAgosto" placeholder="Impuestos Retenidos">
-            <input type="number" min="0" class="form-control" id="HBAgosto" placeholder="Honorarios Brutos">
-            <input type="number" min="0" class="form-control" id="HRAgosto" placeholder="Impuestos Retenidos">
-        </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Junio</span>
+                <input type="number" min="0" class="form-control" id="SIJunio" placeholder="Sueldo Imponible">
+                <input type="number" min="0" class="form-control" id="IRJunio" placeholder="Impuestos Retenidos">
+                <input type="number" min="0" class="form-control" id="HBJunio" placeholder="Honorarios Brutos">
+                <input type="number" min="0" class="form-control" id="HRJunio" placeholder="Impuestos Retenidos">
+            </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Septiembre</span>
-            <input type="number" min="0" class="form-control" id="SISeptiembre" placeholder="Sueldo Imponible">
-            <input type="number" min="0" class="form-control" id="IRSeptiembre" placeholder="Impuestos Retenidos">
-            <input type="number" min="0" class="form-control" id="HBSeptiembre" placeholder="Honorarios Brutos">
-            <input type="number" min="0" class="form-control" id="HRSeptiembre" placeholder="Impuestos Retenidos">
-        </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Julio</span>
+                <input type="number" min="0" class="form-control" id="SIJulio" placeholder="Sueldo Imponible">
+                <input type="number" min="0" class="form-control" id="IRJulio" placeholder="Impuestos Retenidos">
+                <input type="number" min="0" class="form-control" id="HBJulio" placeholder="Honorarios Brutos">
+                <input type="number" min="0" class="form-control" id="HRJulio" placeholder="Impuestos Retenidos">
+            </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Octubre</span>
-            <input type="number" min="0" class="form-control" id="SIOctubre" placeholder="Sueldo Imponible">
-            <input type="number" min="0" class="form-control" id="IROctubre" placeholder="Impuestos Retenidos">
-            <input type="number" min="0" class="form-control" id="HBOctubre" placeholder="Honorarios Brutos">
-            <input type="number" min="0" class="form-control" id="HROctubre" placeholder="Impuestos Retenidos">
-        </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Agosto</span>
+                <input type="number" min="0" class="form-control" id="SIAgosto" placeholder="Sueldo Imponible">
+                <input type="number" min="0" class="form-control" id="IRAgosto" placeholder="Impuestos Retenidos">
+                <input type="number" min="0" class="form-control" id="HBAgosto" placeholder="Honorarios Brutos">
+                <input type="number" min="0" class="form-control" id="HRAgosto" placeholder="Impuestos Retenidos">
+            </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Noviembre</span>
-            <input type="number" min="0" class="form-control" id="SINoviembre" placeholder="Sueldo Imponible">
-            <input type="number" min="0" class="form-control" id="IRNoviembre" placeholder="Impuestos Retenidos">
-            <input type="number" min="0" class="form-control" id="HBNoviembre" placeholder="Honorarios Brutos">
-            <input type="number" min="0" class="form-control" id="HRNoviembre" placeholder="Impuestos Retenidos">
-        </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Septiembre</span>
+                <input type="number" min="0" class="form-control" id="SISeptiembre" placeholder="Sueldo Imponible">
+                <input type="number" min="0" class="form-control" id="IRSeptiembre" placeholder="Impuestos Retenidos">
+                <input type="number" min="0" class="form-control" id="HBSeptiembre" placeholder="Honorarios Brutos">
+                <input type="number" min="0" class="form-control" id="HRSeptiembre" placeholder="Impuestos Retenidos">
+            </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Diciembre</span>
-            <input type="number" min="0" class="form-control" id="SIDiciembre" placeholder="Sueldo Imponible">
-            <input type="number" min="0" class="form-control" id="IRDiciembre" placeholder="Impuestos Retenidos">
-            <input type="number" min="0" class="form-control" id="HBDiciembre" placeholder="Honorarios Brutos">
-            <input type="number" min="0" class="form-control" id="HRDiciembre" placeholder="Impuestos Retenidos">
-        </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Octubre</span>
+                <input type="number" min="0" class="form-control" id="SIOctubre" placeholder="Sueldo Imponible">
+                <input type="number" min="0" class="form-control" id="IROctubre" placeholder="Impuestos Retenidos">
+                <input type="number" min="0" class="form-control" id="HBOctubre" placeholder="Honorarios Brutos">
+                <input type="number" min="0" class="form-control" id="HROctubre" placeholder="Impuestos Retenidos">
+            </div>
 
-        <div class="d-grid gap-2">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Noviembre</span>
+                <input type="number" min="0" class="form-control" id="SINoviembre" placeholder="Sueldo Imponible">
+                <input type="number" min="0" class="form-control" id="IRNoviembre" placeholder="Impuestos Retenidos">
+                <input type="number" min="0" class="form-control" id="HBNoviembre" placeholder="Honorarios Brutos">
+                <input type="number" min="0" class="form-control" id="HRNoviembre" placeholder="Impuestos Retenidos">
+            </div>
 
-        <a type="button" class="btn btn-outline-info" disabled data-bs-toggle="button" autocomplete="off">Calcular</a>
-    </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Diciembre</span>
+                <input type="number" min="0" class="form-control" id="SIDiciembre" placeholder="Sueldo Imponible">
+                <input type="number" min="0" class="form-control" id="IRDiciembre" placeholder="Impuestos Retenidos">
+                <input type="number" min="0" class="form-control" id="HBDiciembre" placeholder="Honorarios Brutos">
+                <input type="number" min="0" class="form-control" id="HRDiciembre" placeholder="Impuestos Retenidos">
+            </div>
+
+            <div class="d-grid py-2 gap-2">
+                <button type="button submit" class="btn btn-outline-info">Calcular</button>
+            </div>
+
+        </form>
+
     </div>
 
 </main>
