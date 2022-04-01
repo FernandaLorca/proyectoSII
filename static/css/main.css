@@ -5,12 +5,11 @@ h1 {
   
   h2 {
     color: #26798E;
-    color: #63CAA7;
-  
   }
   
   h4 {
     color: #63CAA7;
+    color: #26798E;
   }
   
   img {
@@ -22,6 +21,7 @@ h1 {
     margin: 5px 5px 5px 3px;
   }
 
-  table {
-      margin: 0 0;
-  }
+
+
+
+ 
