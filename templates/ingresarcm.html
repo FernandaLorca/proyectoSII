@@ -2,6 +2,16 @@
 
 {% block content %}
 
+{% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{message}}
+                  </div>
+                {% endfor %}
+            {% endif %}
+{% endwith %}
+
 <main>
 
     <div class="container col-xxl-10 px-6 py-5">
@@ -9,6 +19,7 @@
         <p class="fs-5 text-dark mb-4">Rellene los recuadros de texto con la información correspondiente</p>
 
         <form method="post" action="/ingresarcm">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
             <div class="input-group mb-3">
                 <select name=mes class="form-select" aria-label="Default select example">
@@ -28,8 +39,8 @@
                 </select>
 
                 <input type="text" class="form-control" readonly="readonly" placeholder="Diciembre">
-                <input type="number" step=".01" class="form-control" name="porcentaje" id="porcentaje" placeholder="Porcentaje">
-                <input type="number" class="form-control" name="anio" id="anio" placeholder="Año">
+                <input type="number" min=0 step=".01" class="form-control" name="porcentaje" id="porcentaje" placeholder="Porcentaje">
+                <input type="number" min=0 class="form-control" name="anio" id="anio" placeholder="Año">
             </div>
 
             <div class="d-grid py-2 gap-2">
