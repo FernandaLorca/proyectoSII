@@ -9,16 +9,15 @@
         <div class="col-sm-12 py-3" >
             <p class="lead">Rellena los recuadros de texto con la información correspondiente en cada caso.</p>
             <p class="lead">* Si aún no dispones de todos los datos de tus liquidaciones de sueldo y/o boletas
-                de horarios hasta el mes de diciembre, deja las casillas en blanco para que realicemos el cálculo en
-                base a una
-                proyección anual generada por nosotros.</p>
+                de horarios hasta el mes de diciembre, deja las casillas en blanco, para realizar el cálculo en
+                base a una proyección anual generada por nosotros.</p>
             <p class="lead">* Si hubo meses en los cuales no recibiste renta, por favor completar las casillas con
                 ceros.</p>
         </div>
 
         <form method="post" action="/calcular">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            
+
             <div class="input-group mb-3">
                 <span class="input-group-text">Enero</span>
                 <input type="number" min="0" class="form-control" id="SIEnero" placeholder="Sueldo Imponible">

@@ -27,6 +27,7 @@
             </a>
 
             <div class="col-md-3 text-end">
+                <a href="/" class="btn btn-outline-info">Inicio</a>
                 <a href="{{  url_for('admin') }}" class="btn btn-outline-info">Admin</a>
                 {% if 'user' in session %}
                 <a href="{{  url_for('logout') }}" class="btn btn-outline-info">Salir</a>

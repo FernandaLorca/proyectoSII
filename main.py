@@ -302,7 +302,5 @@ def calcular():
    
     return render_template('calcular.html')
 
-  
-
 if __name__ == '__main__':
     app.run(debug=True)
