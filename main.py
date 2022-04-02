@@ -108,6 +108,8 @@ def logout():
 
     if 'user' in session:
         session.pop('user')
+        success_message = 'Sesión cerrada exitosamente.'
+        flash(success_message)
       
     return redirect(url_for('index'))
 
@@ -298,7 +300,6 @@ def eliminarcm():
 @app.route('/calcular',  methods=['POST'])
 def calcular():
 
-    
    
     return render_template('calcular.html')
 
