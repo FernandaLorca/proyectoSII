@@ -1,10 +1,20 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask
+from flask import render_template
+from flask import request
+from flask import redirect
+from flask import url_for
+from flask import flash
+from flask import session
+from flask_wtf import CSRFProtect
 import psycopg2
 import psycopg2.extras
 import os
 
 
 app = Flask(__name__)
+app.secret_key = 'my_secret_key'
+csrf = CSRFProtect(app)
+
 
 def connectDB():
     connectionString='dbname=taxhelp user=fer password=ferfer host=localhost'
@@ -25,26 +35,45 @@ def index():
 
     return render_template('index.html', anios=anios)
 
-@app.route('/calculo/<int:anio>')
-def calculo(anio):
-
-    conectar = connectDB()
-    cursor=conectar.cursor()
-    cursor.execute(f"""SELECT * FROM IA WHERE anio={anio};""")
-        
-    ans=cursor.fetchall()
-   
-    return render_template('calculo.html', ans=ans)
-
-@app.route('/admin', methods=['GET', 'POST'])
+@app.route('/admin')
 def admin():
-    if request.method=='GET':
-        return render_template('adminlogin.html')
+
+    if 'user' in session:
+        user = session['user']
+        print (user)
+
+        conectar = connectDB()
+        cursor=conectar.cursor()
+        cursor.execute("""SELECT desde, hasta, factor, CR, anio
+                        FROM IA order by anio, factor; """)
+        
+        datos=cursor.fetchall()
+
+        conectar = connectDB()
+        cursor=conectar.cursor()
+        cursor.execute("""SELECT mes, porcentaje, anio
+                        FROM CM order by anio; """)
+
+        cm=cursor.fetchall()
+
+        ctx = {
+        "datos" : datos,
+        "cm" : cm
+        }
+
+        return render_template('admin.html', contexto=ctx)
+
     else:
+        return redirect('adminlogin')
 
+@app.route('/adminlogin', methods=['GET', 'POST'])
+def adminlogin():
+
+    if request.method == 'POST':
         user = request.form.get("password")
+        if user == 'sii123':
+            session['user'] = request.form.get("password")
 
-        if user=='sii123':
 
             conectar = connectDB()
             cursor=conectar.cursor()
@@ -68,7 +97,31 @@ def admin():
             return render_template('admin.html', contexto=ctx)
 
         else:
-             return render_template('index.html')
+            success_message = 'Contraseña Incorrecta'
+            flash(success_message)
+            return redirect('admin')
+
+    return render_template('adminlogin.html')
+
+@app.route('/logout')
+def logout():
+
+    if 'user' in session:
+        session.pop('user')
+      
+    return redirect(url_for('index'))
+
+@app.route('/calculo/<int:anio>')
+def calculo(anio):
+
+    conectar = connectDB()
+    cursor=conectar.cursor()
+    cursor.execute(f"""SELECT * FROM IA WHERE anio={anio};""")
+        
+    ans=cursor.fetchall()
+   
+    return render_template('calculo.html', ans=ans)
+
 
 @app.route('/ingresarcm', methods=['GET', 'POST'])
 def ingresarcm():
@@ -94,9 +147,13 @@ def ingresarcm():
         try:
             cursor.execute(sql,datos)
             conectar.commit()
-            return render_template('ingresarcm.html')
+            success_message = 'Dato ingresado exitosamente.'
+            flash(success_message)
+            return redirect('/admin')
         except:
-            return render_template('ingresarcm.html')
+            success_message = 'Dato no ingresado. Verifique que no exista un dato con el mismo mes y año.'
+            flash(success_message)
+            return redirect('/ingresarcm')
     
 
 @app.route('/ingresaria', methods=['GET', 'POST'])
@@ -120,11 +177,18 @@ def ingresaria():
         conectar = connectDB()
         cursor=conectar.cursor()
 
-        cursor.execute(sql, datos)
+        print(sql)
 
-        conectar.commit()
-    
-    return render_template('ingresaria.html')
+        try:
+            cursor.execute(sql,datos)
+            conectar.commit()
+            success_message = 'Dato ingresado exitosamente.'
+            flash(success_message)
+            return redirect('/admin')
+        except:
+            success_message = 'Dato no ingresado. Verifique que no exista un dato con el mismo factor y año.'
+            flash(success_message)
+            return redirect('/ingresaria')
 
 @app.route('/eliminaria', methods=['GET', 'POST'])
 def eliminaria():
@@ -168,11 +232,17 @@ def eliminaria():
 
         print(sql)
 
-        cursor.execute(sql,datos)
-        conectar.commit()
-        return render_template('admin.html', contexto=ctx)
+        try:
+            cursor.execute(sql,datos)
+            conectar.commit()
+            success_message = 'Dato eliminado exitosamente.'
+            flash(success_message)
+            return redirect('/admin')
+        except:
+            success_message = 'Dato no eliminado. Verifique los valores ingresados.'
+            flash(success_message)
+            return redirect('/eliminaria')
         
-
 
 @app.route('/eliminarcm', methods=['GET', 'POST'])
 def eliminarcm():
@@ -217,9 +287,13 @@ def eliminarcm():
         try:
             cursor.execute(sql,datos)
             conectar.commit()
-            return render_template('admin.html', contexto=ctx)
+            success_message = 'Dato eliminado exitosamente.'
+            flash(success_message)
+            return redirect('/admin')
         except:
-            return render_template('admin.html', contexto=ctx)
+            success_message = 'Dato no eliminado. Verifique los valores ingresados.'
+            flash(success_message)
+            return redirect('/eliminarcm')
 
 @app.route('/calcular',  methods=['POST'])
 def calcular():
@@ -227,8 +301,6 @@ def calcular():
     
    
     return render_template('calcular.html')
-
-  
 
 if __name__ == '__main__':
     app.run(debug=True)

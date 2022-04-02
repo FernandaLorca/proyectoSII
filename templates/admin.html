@@ -2,14 +2,30 @@
 
 {% block content %}
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
 <main>
 
     <div class="container col-xxl-10 px-6 py-5">
 
-        <h2 class="pb-2 text-center">Tabla de Cálculo del Impuesto Global Complementario</h2>
+        <div class=" container col-xxl-9 px-4 py-2">
+
+            <h1 class="pb-2 text-center px-4">Bienvenid@ al Panel de Administración</h1>
+
+        </div>
 
 
-        <div class="container col-xxl-9 px-4 py-5" id="custom-cards">
+        <div class=" container col-xxl-9 px-4 py-2" id="custom-cards">
+
+            <h2 class="pb-2 py-3 text-center">Tabla de Cálculo del Impuesto Global Complementario</h2>
 
             <div class="table-responsive">
                 <table class="table">
@@ -21,7 +37,7 @@
                             <th scope="col">Hasta</th>
                             <th scope="col">Factor</th>
                             <th scope="col">Cantidad a rebajar</th>
-                            
+
 
                         </tr>
                     </thead>
@@ -31,12 +47,12 @@
 
                             {% for item in contexto.datos %}
 
-                            <td>{{item.4}}</td> 
+                            <td>{{item.4}}</td>
                             <td>{{item.0}}</td>
                             <td>{{item.1}}</td>
                             <td>{{item.2}}</td>
                             <td>{{item.3}}</td>
-                            
+
 
                         </tr>
 
@@ -57,9 +73,10 @@
 
         </div>
 
-        <h2 class="pb-2 text-center">Tabla Correción Monetaria Mensual a Diciembre</h2>
 
-        <div class="container col-xxl-9 px-4 py-5" id="custom-cards">
+        <div class="container col-xxl-9 px-4 py-2" id="custom-cards">
+
+            <h2 class="pb-2 text-center">Tabla Correción Monetaria Mensual a Diciembre</h2>
 
             <div class="table-responsive">
                 <table class="table">
@@ -70,7 +87,7 @@
                             <th scope="col">Desde</th>
                             <th scope="col">Hasta</th>
                             <th scope="col">Porcentaje</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
@@ -82,7 +99,7 @@
                             <td>{{item.0}}</td>
                             <td>Diciembre</td>
                             <td>{{item.1}}</td>
-                            
+
 
 
                         </tr>
@@ -93,7 +110,7 @@
                     {% endblock conect %}
                 </table>
             </div>
-    
+
             <div class="d-grid py-2 gap-2">
                 <a href="{{  url_for('ingresarcm') }}" class="btn btn-outline-info">Añadir datos</a>
             </div>
@@ -101,7 +118,7 @@
             <div class="d-grid py-2 gap-2">
                 <a href="{{  url_for('eliminarcm') }}" class="btn btn-outline-info">Eliminar datos</a>
             </div>
-        
+
 
         </div>
 
