@@ -27,10 +27,12 @@
             </a>
 
             <div class="col-md-3 text-end">
+                {% if 'user' in session %}
+                <a href="{{  url_for('admin') }}" class="btn btn-outline-info">Admin</a>
+                <a href="{{  url_for('logout') }}" class="btn btn-outline-info">Cerrar Sesión</a>
+                {% else %}
                 <a href="/" class="btn btn-outline-info">Inicio</a>
                 <a href="{{  url_for('admin') }}" class="btn btn-outline-info">Admin</a>
-                {% if 'user' in session %}
-                <a href="{{  url_for('logout') }}" class="btn btn-outline-info">Salir</a>
                 {% endif %}
             </div>
 
@@ -42,10 +44,12 @@
 
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                {% if 'user' in session %}
+                <li class="nav-item"><a href="{{  url_for('admin') }}" class="nav-link px-2 text-muted">Admin</a></li>
+                <li class="nav-item"><a href="{{  url_for('logout') }}" class="nav-link px-2 text-muted">Cerrar Sesión</a></li>
+                {% else %}
                 <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Inicio</a></li>
                 <li class="nav-item"><a href="{{  url_for('admin') }}" class="nav-link px-2 text-muted">Admin</a></li>
-                {% if 'user' in session %}
-                <li class="nav-item"><a href="{{  url_for('logout') }}" class="nav-link px-2 text-muted">Salir</a></li>
                 {% endif %}
             </ul>
             <p class="text-center text-muted">© 2022 TAX Help, Inc</p>
