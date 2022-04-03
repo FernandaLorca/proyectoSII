@@ -285,6 +285,89 @@ def calcular(anio): # se define la función calcular(anio) que recibe como pará
     HBDiciembre = request.form.get("HBDiciembre")
     HRDiciembre = request.form.get("HRDiciembre")
     
+    ########## CÁLCULOS ##########
+
+    flagCasillas = False # True si llena todas las casillas
+    flagIngresos = False # True si percibe los dos tipos de ingresos
+    flagTipoIngreso = False # True si el tipo de ingreso es salario
+
+    flagResultado = False # True si corresponde pago de impuestos
+    flagCaso = 0 # 1 si llena todas las casillas y percibe ambos tipos de ingresos, 2 si llena todas las casillas y sólo percibe ingresos por salarios, 3 si llena todas las casillas y sólo percibe ingresos por honorarios, 4 si no llena todas las casillas y percibe ambos tipos de ingresos, 5 si no llena todas las casillas y sólo percibe ingresos por salarios, 6 si no llena todas las casillas y sólo percibe ingresos por honorarios.
+    
+    if(flagCasillas):
+        if(flagIngresos):
+            flagCaso = 1
+        # Salarios:
+        # 1. Cálculo de impuestos retenidos anuales
+            IR = [IREnero, IRFebrero, IRMarzo, IRAbril, IRMayo, IRJunio, IRJulio, IRAgosto, IRSeptiembre, IROctubre, IRNoviembre, IRDiciembre] # arreglo de impuestos retenidos por cada mes (de enero a diciembre)
+            IRA = 0
+            for index in range(10):
+                IRA = IRA + (float(IR[index])*CM[index])
+
+            IRA = IRA + float(IR[11])
+        
+        # 2. Cálculo de salario imponible anual
+            SI = [SIEnero, SIFebrero, SIMarzo, SIAbril, SIMayo, SIJunio, SIJulio, SIAgosto, SISeptiembre, SIOctubre, SINoviembre, SIDiciembre] # arreglo de salarios imponibles por cada mes (de enero a diciembre)
+            RIA = 0
+            for index in range(10):
+                RIA = RIA + (float(SI[index])*CM[index])
+            
+            RIA = RIA + float(SI[11])
+
+        # Honorarios
+        # 1. Cálculo de honorarios retenidos anuales
+            HR = [HREnero, HRFebrero, HRMarzo, HRAbril, HRMayo, HRJunio, HRJulio, HRAgosto, HRSeptiembre, HROctubre, HRNoviembre,  HRDiciembre] # arreglo de honorarios retenidos por cada mes (de enero a diciembre)
+            HRA = 0
+            for index in range(10):
+                HRA = HRA + (float(HR[index])*CM[index])
+
+            HRA = HRA + float(HR[11])
+        
+        # 2. Cálculo de honorario imponible anual
+            HB = [HBEnero, HBFebrero, HBMarzo, HBAbril, HBMayo, HBJunio, HBJulio, HBAgosto, HBSeptiembre, HBOctubre, HBNoviembre, HBDiciembre] # arreglo de salarios imponibles por cada mes (de enero a diciembre)
+            HIA = 0
+            for index in range(10):
+                HIA = HIA + (float(HB[index])*CM[index])
+            
+            HIA = HIA + float(HB[11])
+            HIA = HIA * 0.7
+        
+        # Salarios + Honorarios
+        # 1. Cálculo de impuesto anual a pagar
+            IIA = RIA + HIA # Ingresos imponibles anuales
+            cursor2 = conectar.cursor()
+            cursor2.execute(f""" SELECT factor FROM IA WHERE desde <= {IIA} AND hasta > {IIA}; """)
+            f = cursor2.fetchall()
+            F = list(f)
+            cursor2.execute(f""" SELECT CR FROM IA WHERE desde <= {IIA} AND hasta > {IIA}; """)
+            cr = cursor2.fetchall()
+            CR = list(cr)
+            IAA = (IIA*F[0][0]) - CR[0][0]
+
+        # 2. Cálculo de impuesto total
+            res = IAA - (HRA + IRA)
+            if(res > 0):
+                flagResultado = True
+            else:
+                flagResultado = False
+
+            return render_template('calcular.html', res = abs(res), caso = flagCaso, pago=flagResultado)
+
+        else:
+            if(flagTipoIngreso):
+                flagCaso = 2
+                
+
+            else:
+
+    else: 
+        if(flagIngresos):
+             
+        else:  
+            if(flagTipoIngreso):
+
+            else:
+
     conectar = connectDB()
     cursor1 = conectar.cursor()
     cursor1.execute(""" SELECT porcentaje FROM CM WHERE anio=2021; """)
