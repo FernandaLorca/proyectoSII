@@ -17,13 +17,16 @@
     <div class="container col-xxl-8 px-4 py-3">
         <form action="" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <div class="col-sm-12 py-3">
-                <h2 class="pb-2">Panel de Administración</h2>
-                <label class="form-label">Ingrese contraseña administrador</label>
-                
-                <input name="password" type="password" class="form-control text-muted" placeholder="Contraseña" id="password" value="" required>
+            <div class="col-sm-12 py-2">
+                <h2 class="display-12 lh-1 mb-3">Panel de Administración</h2>
+
+                  <div class="mb-3">
+                    <label for="exampleInputPassword" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control text-muted"  placeholder="Contraseña" name="password" id="password" required>
+                  </div>
+
             </div>
-            <div class="d-grid py-3 gap-2">
+            <div class="d-grid">
                 <button type="button submit" class="btn btn-outline-info">Ingresar</button>
             </div>
         </form>
