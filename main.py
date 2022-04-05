@@ -386,7 +386,7 @@ def resultados(anio):
                 flagProyeccion=True
                 contador_filasnulas=contador_filasnulas+1
                 if mesProyeccion==0:
-                    mesProyeccion = i+1
+                    mesProyeccion = i
                 
             if filanula==0 and flagProyeccion==True and (datos[i-1][j]== ' ' or datos[i-1][j]== None):
                 print(i,'se cae en el primer if')
@@ -592,32 +592,45 @@ def resultados(anio):
             # Salarios:
             # 1. Cálculo de impuestos retenidos anuales
             IRA = 0
-            for index in range(mesProyeccion-1):
+            for index in range(mesProyeccion):
                 IRA = IRA + (float(IR[index])*(CM[index]/100)) + float(IR[index])
+
+            print('IRA: ', IRA)
+            print('correción monetaria: ', CM)
 
             prom = IRA/(mesProyeccion)
             IRA = IRA + ((12-mesProyeccion)*prom)
-        
+
+            print('IRA + promedios: ', IRA)
+            print('promedio:', prom)
+            print('mes proyección', mesProyeccion)
+            
             # 2. Cálculo de salario imponible anual
             RIA = 0
-            for index in range(mesProyeccion-1):
+            for index in range(mesProyeccion):
                 RIA = RIA + (float(SI[index])*(CM[index]/100)) + float(SI[index])
             
+            print('RIA: ', RIA)
             prom = RIA/(mesProyeccion)
             RIA = RIA + ((12-mesProyeccion)*prom)
+            print('promedio RIA:' , prom)
 
             # Honorarios
             # 1. Cálculo de honorarios retenidos anuales
             HRA = 0
-            for index in range(mesProyeccion-1):
+            for index in range(mesProyeccion):
                 HRA = HRA + (float(HR[index])*(CM[index]/100)) + float(HR[index])
 
             prom = HRA/(mesProyeccion)
             HRA = HRA + ((12-mesProyeccion)*prom)
+
+            print('promedio honorario: ', prom)
+            print('HRA: ', HRA)
+
         
             # 2. Cálculo de honorario imponible anual
             HIA = 0
-            for index in range(mesProyeccion-1):
+            for index in range(mesProyeccion):
                 HIA = HIA + (float(HB[index])*(CM[index]/100)) + float(HB[index])
 
             prom = HIA/(mesProyeccion)
@@ -627,6 +640,7 @@ def resultados(anio):
             # Salarios + Honorarios
             # 1. Cálculo de impuesto anual a pagar
             IIA = RIA + HIA # Ingresos imponibles anuales
+            print('IIA: ', IIA)
             cursor2 = conectar.cursor()
             cursor2.execute(f""" SELECT factor FROM IA WHERE desde <= {IIA} AND hasta > {IIA}; """)
             f = cursor2.fetchall()
@@ -635,6 +649,9 @@ def resultados(anio):
             cr = cursor2.fetchall()
             CR = list(cr)
             IAA = (IIA*F[0][0]) - CR[0][0]
+
+            print('HRA+IRA: ', HRA+IRA)
+           
 
             # 2. Cálculo de impuesto total
             res = IAA - (HRA + IRA)
