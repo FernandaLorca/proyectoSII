@@ -707,12 +707,15 @@ def resultados(anio):
 
                 # 4. Cálculo de impuesto total de honorarios
                 res = IAA - HRA
+                
     if(res > 0):
         flagResultado = True
     else:
         flagResultado = False
 
-    return render_template('resultados.html', anio=anio, res = abs(res), caso = flagCaso, pago=flagResultado)
+    result = round(res, 2) 
+
+    return render_template('resultados.html', anio=anio, result = abs(result), caso = flagCaso, pago=flagResultado)
 
 if __name__ == '__main__':
     app.run(debug=True)
