@@ -23,7 +23,7 @@ csrf = CSRFProtect(app)
 
 
 def connectDB():
-    connectionString='dbname=taxhelp user=fer password=ferfer host=localhost'
+    connectionString='dbname=taxhelp user=cata password=catacata host=localhost'
     print(connectionString)
     try:
         return psycopg2.connect(connectionString)
