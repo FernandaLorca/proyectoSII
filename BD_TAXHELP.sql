@@ -1,3 +1,6 @@
+
+CREATE DATABASE taxHelp;
+
 CREATE TABLE CM (
     mes varchar(50) NOT NULL,
     porcentaje FLOAT NOT NULL,
