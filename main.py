@@ -395,13 +395,13 @@ def resultados(anio):
                 
             if filanula==0 and flagProyeccion==True and (datos[i-1][j]== ' ' or datos[i-1][j]== None):
                 print(i,'se cae en el primer if')
-                success_message = 'Error. Por favor verifique las indicaciones e ingrese los datos correctamente.'
+                success_message = 'ERROR. Por favor verifique las indicaciones e ingrese los datos correctamente.'
                 flash(success_message)
                 return redirect(f'/calculo/{anio}')  #error   
          
         if filanula>0 and filanula<4:
             print('se cae en el segundo if')
-            success_message = 'Error. Por favor verifique las indicaciones e ingrese los datos correctamente.'
+            success_message = 'ERROR. Por favor verifique las indicaciones e ingrese los datos correctamente.'
             flash(success_message)
             return redirect(f'/calculo/{anio}')  #error  
         
